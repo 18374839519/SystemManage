@@ -1,12 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2efb528e-0e7c-427f-91dd-1e02f1ab4434" name="Default Changelist" comment="" />
+    <list default="true" id="2efb528e-0e7c-427f-91dd-1e02f1ab4434" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/consumer-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/consumer-pro.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/consumer-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/src/main/java/com/louis/mango/config/MangoConfigApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-config/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/MangoConsumerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/config/RetryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/config/SpringConfigController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/controller/CallHelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/controller/FeignHelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/controller/RibbonHelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/controller/ServiceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/feignService/MangoProducerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/java/com/louis/mango/consumer/hystrix/MangoProducerHystrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/resources/META-INF/spring.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-consumer/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/src/main/java/com/louis/mango/core/MangoCoreApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/src/main/java/com/louis/mango/core/exception/BaseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/src/main/java/com/louis/mango/core/exception/CommonExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-core/src/test/java/com/louis/mango/core/MangoCoreApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/src/main/java/com/lous/mango/hystrix/MangoHystrixApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-hystrix/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/src/main/java/com/louis/mango/monitor/MangoMonitorApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/src/main/java/com/louis/mango/monitor/config/WebMvcConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-monitor/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/src/main/java/com/lous/mango/producer/MangoProducerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/src/main/java/com/lous/mango/producer/controller/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-producer/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/src/main/java/com/lous/mango/zuul/MangoZuulApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/src/main/java/com/lous/mango/zuul/fallback/MyFallbackProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/src/main/java/com/lous/mango/zuul/filter/MyFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mango-zuul/src/main/resources/application.yml" beforeDir="false" />
+    </list>
+    <ignored path="F:/subjects/mango/mango-admin/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,18 +116,18 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="F:/subjects/mango/mango-admin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
@@ -79,27 +154,24 @@
       <option name="presentableId" value="Default" />
       <updated>1580648951268</updated>
       <workItem from="1580648952471" duration="48000" />
+      <workItem from="1587819439826" duration="265000" />
+      <workItem from="1587819725669" duration="9000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48000" />
+    <option name="totallyTimeSpent" value="322000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25198728" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -107,19 +179,34 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/mango-admin/src/main/java/com/louis/mango/admin/MangoAdminApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="71" lean-forward="true" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mango-config/src/main/resources/application.yml" />
   </component>
   <component name="masterDetails">
     <states>
