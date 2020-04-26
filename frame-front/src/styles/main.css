@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.template {
+  height: 100%;
+}
+
+.el-form {
+  width: 800px;
+  padding: 20px;
+}
+
+.el-col {
+  margin-left: 5px;
+  text-align: right;
+  padding: 0 8px;
+  font-weight: bold;
+  width: 380px;
+}
+
+.el-button {
+  margin-right: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.el-dialog__header {
+  text-align: left;
+  background-color: #42b983;
+  padding: 10px;
+}
+
+.el-dialog__title {
+  font-size: 14px;
+}
+
+.el-dialog__headerbtn {
+  top: 15px;
+}
+
+.el-dialog {
+  width: 850px;
+}
+
+.buttonRow {
+  text-align: right;
+}
