@@ -44,7 +44,7 @@ public class SysLoginController {
 
         try {
             VerifyCode verifyCode = new VerifyCode();
-            verifyCode.output(verifyCode.getImage(), new FileOutputStream("F:/subjects/mangoWeb/frame-front/src/assets/images/kaptcha.jpg"));
+            verifyCode.output(verifyCode.getImage(), new FileOutputStream("G:/SysWeb/sysManageWeb/src/assets/kaptcha.jpg"));
             String text = verifyCode.getText();
             return HttpResultUtils.success(text);
         } catch (IOException e) {
