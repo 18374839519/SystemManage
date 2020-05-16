@@ -1,6 +1,7 @@
 package com.admin.service.menu;
 
 import com.admin.model.menu.SysMenu;
+import com.admin.model.user.SysUserMenu;
 
 import java.util.List;
 import java.util.Set;
@@ -57,4 +58,6 @@ public interface SysMenuService {
      * @return
      */
     boolean updateById(SysMenu record);
+
+    List<SysUserMenu> getMenusByUserId(String userId);
 }

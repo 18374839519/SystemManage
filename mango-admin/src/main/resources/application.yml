@@ -41,3 +41,15 @@ management:
   endpoint:
     health:
       show-details: always
+
+#开启驼峰转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true

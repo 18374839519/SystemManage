@@ -1,6 +1,7 @@
 package com.admin.controller.menu;
 
 import com.admin.model.menu.SysMenu;
+import com.admin.model.user.SysUserMenu;
 import com.admin.security.utils.JwtTokenUtils;
 import com.admin.service.menu.impl.SysMenuServiceImpl;
 import com.admin.utils.datas.MenuData;
@@ -9,6 +10,10 @@ import com.admin.utils.exception.BaseException;
 import com.admin.utils.http.HttpResult;
 import com.admin.utils.http.HttpResultUtils;
 import com.admin.utils.http.HttpStatus;
+import com.admin.utils.page.PageRequest;
+import com.admin.utils.uuid.UUIDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/menu")
@@ -28,29 +31,45 @@ public class SysMenuController {
     private SysMenuServiceImpl sysMenuService;
 
     @GetMapping("/getAllMenu")
-    public HttpResult getAllMenu() {
+    public HttpResult getAllMenu(PageRequest pageRequest) {
+        PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
         List<SysMenu> list = sysMenuService.selectAll();
-        List<MenuData> listMenu = new ArrayList<>();
-        for (int i=0; i<list.size(); i++) {
-            MenuData menuData = new MenuData();
-            menuData.setId(String.valueOf(list.get(i).getId()));
-            menuData.setUpId(String.valueOf(list.get(i).getParentId()));
-            menuData.setType(list.get(i).getIcon());
-            if (list.get(i).getUrl() != null && !"".equals(list.get(i).getUrl())) {
-                String[] names = list.get(i).getUrl().split("/");
-                menuData.setName(names[names.length-1].split("\\.")[0]); // 路由名称，取vue文件名称
-            }
-            menuData.setText(list.get(i).getName());
-            menuData.setData(list.get(i));
-            listMenu.add(menuData);
+        PageInfo<SysMenu> pageInfo = new PageInfo<>(list);
+        return HttpResultUtils.success(pageInfo);
+    }
+
+    @GetMapping("/getMenusByUserId")
+    public HttpResult getMenusByUserId(String userId) {
+        List<SysUserMenu> menuList = sysMenuService.getMenusByUserId(userId);
+        if (menuList.size() == 0) {
+            return HttpResultUtils.success();
         }
-        MenuDataUtils menuDataUtils = new MenuDataUtils(listMenu);
-        List<MenuData> tree = menuDataUtils.builTree();
-        return HttpResultUtils.success(tree);
+        List<String> menuIdListStr = new ArrayList<>();
+        for (SysUserMenu sysUserMenu : menuList) {
+            menuIdListStr.add(sysUserMenu.getMenuId());
+        }
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("menuIdListStr", menuIdListStr);
+        List<SysMenu> menuLists = sysMenuService.selectMenusById(paramMap);
+        List<MenuData> menuDataList = new ArrayList<>();
+        for (int i=0; i<menuLists.size(); i++) {
+            MenuData menuData = new MenuData();
+            menuData.setId(menuLists.get(i).getMenuId());
+            menuData.setName(menuLists.get(i).getName());
+            menuData.setUrl(menuLists.get(i).getUrl());
+            menuData.setIcon(menuLists.get(i).getIcon());
+            menuData.setUpId(menuLists.get(i).getParentId());
+            menuData.setData(menuLists.get(i));
+            menuDataList.add(menuData);
+        }
+        MenuDataUtils menuDataUtils = new MenuDataUtils(menuDataList);
+        List<MenuData> returnList = menuDataUtils.builTree();
+        return HttpResultUtils.success(returnList);
     }
 
     @PostMapping("/insertMenu")
     public HttpResult insertMenu(HttpServletRequest request, SysMenu sysMenu) {
+        sysMenu.setMenuId(UUIDUtils.getUUID());
         sysMenu.setCreateBy(JwtTokenUtils.getUsernameFromToken(JwtTokenUtils.getToken(request)));
         sysMenu.setCreateTime(new Date());
         sysMenu.setDelFlag(0);

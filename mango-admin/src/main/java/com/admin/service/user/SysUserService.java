@@ -25,7 +25,7 @@ public interface SysUserService {
      * @param sysUser
      * @return
      */
-    int addUser(SysUser sysUser);
+    int insertUser(SysUser sysUser);
 
     /**
      * 检查用户名是否存在

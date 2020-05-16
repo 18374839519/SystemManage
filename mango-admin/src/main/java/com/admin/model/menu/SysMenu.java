@@ -1,5 +1,7 @@
 package com.admin.model.menu;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class SysMenu {
@@ -23,10 +25,12 @@ public class SysMenu {
 
     private String createBy;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     private String lastUpdateBy;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date lastUpdateTime;
 
     private Integer delFlag;

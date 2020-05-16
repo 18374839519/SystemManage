@@ -69,7 +69,7 @@ public class DruidConfig {
                 = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
 
         // 白名单
-        servletServletRegistrationBean.addInitParameter("allow", "127.0.0.1,139.196.87.48");
+        servletServletRegistrationBean.addInitParameter("allow", "127.0.0.1");
 
         // ip黑名单，共同存在时，deny由于allow；如果满足deny的话，提示：Soory, you are not permitted to view this page
         servletServletRegistrationBean.addInitParameter("deny", "192.168.1.119");

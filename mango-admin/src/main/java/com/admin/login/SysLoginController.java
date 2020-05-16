@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录相关API
@@ -81,6 +83,9 @@ public class SysLoginController {
         if (token == null) {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "登录失败");
         }
-        return HttpResultUtils.success(token);
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("user", sysUser);
+        return HttpResultUtils.success(map);
     }
 }

@@ -5,13 +5,13 @@ import com.admin.model.dept.SysDept;
 import java.util.List;
 
 public interface SysDeptMapper {
-    int deleteByPrimaryKey(Long id);
+    boolean deleteByPrimaryKey(Long id);
 
-    int insert(SysDept record);
+    boolean insert(SysDept record);
 
     SysDept selectByPrimaryKey(Long id);
 
     List<SysDept> selectAll();
 
-    int updateByPrimaryKey(SysDept record);
+    boolean updateByPrimaryKey(SysDept record);
 }

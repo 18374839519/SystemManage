@@ -85,7 +85,7 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by, 
     create_time, last_update_by, last_update_time, del_flag
-    from sys_menu order by order_num asc
+    from sys_menu order by create_time desc
   </select>
 
   <select id="selectPermissionsByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -97,5 +97,15 @@
   <!--校验菜单名称是否存在-->
   <select id="checkMenuName" parameterType="java.util.Map" resultType="java.lang.Integer">
   	select count(*) from sys_menu where name = #{name,jdbcType=VARCHAR} and parent_id = #{parentId,jdbcType=BIGINT}
+  </select>
+
+  <!--根据id查询菜单-->
+  <select id="selectMenusById" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by,
+    create_time, last_update_by, last_update_time, del_flag
+    from sys_menu where menu_id in
+    <foreach collection="menuIdListStr" index="index" open="(" item="item" close=")" separator=",">
+      #{item}
+    </foreach>
   </select>
 </mapper>

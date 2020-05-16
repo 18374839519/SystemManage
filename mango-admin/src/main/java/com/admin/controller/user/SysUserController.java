@@ -144,7 +144,7 @@ public class SysUserController {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "昵称已存在");
         }
         // 添加用户
-        int result = sysUserServiceImpl.addUser(sysUser);
+        int result = sysUserServiceImpl.insertUser(sysUser);
         if (result < 1) {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "用户添加失败");
         }

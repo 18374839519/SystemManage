@@ -4,6 +4,7 @@ import com.admin.model.menu.SysMenu;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysMenuMapper {
     boolean deleteByPrimaryKey(@Param("idList")List<Integer> idList);
@@ -44,4 +45,6 @@ public interface SysMenuMapper {
      * @return
      */
     boolean updateById(SysMenu record);
+
+    List<SysMenu> selectMenusById(Map<String, Object> map);
 }

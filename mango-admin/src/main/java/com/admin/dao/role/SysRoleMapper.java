@@ -5,13 +5,13 @@ import com.admin.model.role.SysRole;
 import java.util.List;
 
 public interface SysRoleMapper {
-    int deleteByPrimaryKey(Long id);
+    boolean deleteByPrimaryKey(Long id);
 
-    int insert(SysRole record);
+    boolean insert(SysRole record);
 
     SysRole selectByPrimaryKey(Long id);
 
     List<SysRole> selectAll();
 
-    int updateByPrimaryKey(SysRole record);
+    boolean updateByPrimaryKey(SysRole record);
 }

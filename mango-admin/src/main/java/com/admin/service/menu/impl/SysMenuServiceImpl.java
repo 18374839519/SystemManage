@@ -1,13 +1,16 @@
 package com.admin.service.menu.impl;
 
 import com.admin.dao.menu.SysMenuMapper;
+import com.admin.dao.user.SysUserMenuMapper;
 import com.admin.model.menu.SysMenu;
+import com.admin.model.user.SysUserMenu;
 import com.admin.service.menu.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -15,6 +18,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 
     @Autowired
     private SysMenuMapper sysMenuMapper;
+
+    @Autowired
+    private SysUserMenuMapper sysUserMenuMapper;
 
     @Override
     public SysMenu selectByPrimaryKey(int id) {
@@ -61,5 +67,14 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public boolean updateById(SysMenu record) {
         return sysMenuMapper.updateById(record);
+    }
+
+    @Override
+    public List<SysUserMenu> getMenusByUserId(String userId) {
+        return sysUserMenuMapper.getMenusByUserId(userId);
+    }
+
+    public List<SysMenu> selectMenusById(Map<String, Object> map) {
+        return sysMenuMapper.selectMenusById(map);
     }
 }

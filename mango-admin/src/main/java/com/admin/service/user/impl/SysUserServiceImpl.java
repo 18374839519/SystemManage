@@ -34,7 +34,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public int addUser(SysUser sysUser) {
+    public int insertUser(SysUser sysUser) {
+        // 添加用户
         sysUser.setUserId(UUIDUtils.getUUID());
         sysUser.setSalt(PasswordUtils.getSalt());  // 获取盐
         sysUser.setPassword(PasswordUtils.encode(sysUser.getPassword(), sysUser.getSalt()));  // 密码加密
@@ -45,6 +46,8 @@ public class SysUserServiceImpl implements SysUserService {
             sysUser.setNickName("游客" + TimeUtils.getTimeMillis());
         }
         return sysUserMapper.addUser(sysUser);
+        // 添加用户所属机构
+        // 添加用户角色
     }
 
     @Override
