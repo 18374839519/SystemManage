@@ -4,14 +4,13 @@ import com.admin.dao.menu.SysMenuMapper;
 import com.admin.dao.user.SysUserMenuMapper;
 import com.admin.model.menu.SysMenu;
 import com.admin.model.user.SysUserMenu;
+import com.admin.security.utils.JwtTokenUtils;
 import com.admin.service.menu.SysMenuService;
+import com.admin.utils.uuid.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
@@ -40,13 +39,20 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public List<SysMenu> selectAll() {
-        return sysMenuMapper.selectAll();
+    public List<SysMenu> selectAll(Map<String, Object> map) {
+        return sysMenuMapper.selectAll(map);
     }
 
     @Override
     public boolean insert(SysMenu record) {
-        return sysMenuMapper.insert(record);
+        sysMenuMapper.insert(record);
+        SysUserMenu sysUserMenu = new SysUserMenu();
+        sysUserMenu.setUserMenuId(UUIDUtils.getUUID());
+        sysUserMenu.setMenuId(record.getMenuId());
+        sysUserMenu.setUserId("f291d7529a3346a2aca7c60fb3c4bc50"); // 超级管理员
+        sysUserMenu.setCreateTime(new Date());
+        sysUserMenu.setCreateBy(record.getCreateBy());
+        return sysUserMenuMapper.insert(sysUserMenu);
     }
 
     @Override
@@ -76,5 +82,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 
     public List<SysMenu> selectMenusById(Map<String, Object> map) {
         return sysMenuMapper.selectMenusById(map);
+    }
+
+    public List<SysMenu> selectCatalogIdName() {
+        return sysMenuMapper.selectCatalogIdName();
     }
 }

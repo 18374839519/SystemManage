@@ -21,7 +21,8 @@ public class CommonExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public HttpResult exceptionHandler(Exception e) {
-        e.printStackTrace(); // 异常信息打印到控制台
+        //e.printStackTrace(); // 异常信息打印到控制台
+        logger.info(e.getMessage());
         if (e instanceof BaseException) {
             BaseException baseException = (BaseException) e;
             return HttpResultUtils.error(baseException.getCode(), baseException.getMessage());

@@ -13,7 +13,7 @@ public interface SysMenuMapper {
 
     SysMenu selectByPrimaryKey(int id);
 
-    List<SysMenu> selectAll();
+    List<SysMenu> selectAll(Map<String, Object> map);
 
     boolean updateByPrimaryKey(SysMenu record);
 
@@ -47,4 +47,6 @@ public interface SysMenuMapper {
     boolean updateById(SysMenu record);
 
     List<SysMenu> selectMenusById(Map<String, Object> map);
+
+    List<SysMenu> selectCatalogIdName();
 }

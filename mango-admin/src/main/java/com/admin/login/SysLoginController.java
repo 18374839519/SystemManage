@@ -11,6 +11,8 @@ import com.admin.utils.http.HttpResult;
 import com.admin.utils.http.HttpResultUtils;
 import com.admin.utils.http.HttpStatus;
 import com.google.code.kaptcha.Producer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,8 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController {
+
+    private static Logger logger = LoggerFactory.getLogger(SysLoginController.class);
 
     @Autowired
     private Producer producer;
@@ -50,7 +54,7 @@ public class SysLoginController {
             String text = verifyCode.getText();
             return HttpResultUtils.success(text);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         return HttpResultUtils.success();

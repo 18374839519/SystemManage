@@ -5,6 +5,8 @@ import com.admin.security.utils.model.JwtAuthenticatioToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -13,6 +15,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class JwtTokenUtils implements Serializable {
+
+    private static Logger logger = LoggerFactory.getLogger(JwtTokenUtils.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -173,7 +177,7 @@ public class JwtTokenUtils implements Serializable {
             Date expiration = claims.getExpiration();
             return expiration.before(new Date());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return false;
     }

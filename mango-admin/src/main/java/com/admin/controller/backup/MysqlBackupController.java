@@ -8,6 +8,8 @@ import com.admin.utils.http.HttpResult;
 import com.admin.utils.http.HttpResultUtils;
 import com.admin.utils.http.HttpStatus;
 import com.admin.config.BackupDataSourceProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,8 @@ import java.util.*;
 @RestController
 @RequestMapping("/backup")
 public class MysqlBackupController {
+
+    private static Logger logger = LoggerFactory.getLogger(MysqlBackupController.class);
 
     @Autowired
     private MysqlBackupServiceImpl mysqlBackupService;
@@ -58,7 +62,7 @@ public class MysqlBackupController {
                 throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "数据还原失败");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw new BaseException(HttpStatus.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
         return HttpResultUtils.success();
@@ -107,7 +111,7 @@ public class MysqlBackupController {
         try {
             FileUtils.deleteFile(new File(restoreFilePath));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw new BaseException(HttpStatus.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
         return HttpResultUtils.success();
@@ -126,7 +130,7 @@ public class MysqlBackupController {
                 throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "数据备份失败");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             throw new BaseException(HttpStatus.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
         return HttpResultUtils.success();

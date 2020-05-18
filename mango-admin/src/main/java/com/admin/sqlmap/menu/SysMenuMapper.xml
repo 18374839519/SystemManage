@@ -82,10 +82,14 @@
     from sys_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap" >
     select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by, 
     create_time, last_update_by, last_update_time, del_flag
-    from sys_menu order by create_time desc
+    from sys_menu where 1=1
+    <if test="name != null">
+      and name like CONCAT('%', #{name, jdbcType=VARCHAR}, '%')
+    </if>
+    order by create_time desc
   </select>
 
   <select id="selectPermissionsByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -107,5 +111,10 @@
     <foreach collection="menuIdListStr" index="index" open="(" item="item" close=")" separator=",">
       #{item}
     </foreach>
+  </select>
+
+  <!--查询目录id和名称-->
+  <select id="selectCatalogIdName" resultMap="BaseResultMap">
+    select menu_id, name from sys_menu where type = 0;
   </select>
 </mapper>

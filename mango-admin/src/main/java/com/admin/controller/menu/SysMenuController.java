@@ -31,9 +31,11 @@ public class SysMenuController {
     private SysMenuServiceImpl sysMenuService;
 
     @GetMapping("/getAllMenu")
-    public HttpResult getAllMenu(PageRequest pageRequest) {
+    public HttpResult getAllMenu(PageRequest pageRequest, SysMenu sysMenu) {
         PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
-        List<SysMenu> list = sysMenuService.selectAll();
+        Map<String, Object> paramsMap = new HashMap<>();
+        paramsMap.put("name", sysMenu.getName().trim());
+        List<SysMenu> list = sysMenuService.selectAll(paramsMap);
         PageInfo<SysMenu> pageInfo = new PageInfo<>(list);
         return HttpResultUtils.success(pageInfo);
     }
@@ -132,6 +134,12 @@ public class SysMenuController {
     public HttpResult selectById(int id) {
         SysMenu sysMenu = sysMenuService.selectByPrimaryKey(id);
         return HttpResultUtils.success(sysMenu);
+    }
+
+    @GetMapping("/selectCatalogIdName")
+    public HttpResult selectCatalogIdName() {
+        List<SysMenu> list = sysMenuService.selectCatalogIdName();
+        return HttpResultUtils.success(list);
     }
 
 }

@@ -4,6 +4,7 @@ import com.admin.model.menu.SysMenu;
 import com.admin.model.user.SysUserMenu;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface SysMenuService {
@@ -21,7 +22,7 @@ public interface SysMenuService {
      * 查询所有菜单
      * @return
      */
-    List<SysMenu> selectAll();
+    List<SysMenu> selectAll(Map<String, Object> map);
 
     /**
      * 添加

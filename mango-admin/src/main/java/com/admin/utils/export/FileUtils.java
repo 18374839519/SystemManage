@@ -1,9 +1,14 @@
 package com.admin.utils.export;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 public class FileUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      * 将excel文件下载到本地
@@ -27,7 +32,7 @@ public class FileUtils {
             bos.close();
             is.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -56,7 +61,7 @@ public class FileUtils {
             }
             br.close();
         }catch(Exception e){
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return result.toString();
     }
