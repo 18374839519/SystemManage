@@ -61,4 +61,8 @@ public interface SysMenuService {
     boolean updateById(SysMenu record);
 
     List<SysUserMenu> getMenusByUserId(String userId);
+
+    List<SysMenu> selectMenusById(Map<String, Object> map);
+
+    List<SysMenu> selectCatalogIdName();
 }

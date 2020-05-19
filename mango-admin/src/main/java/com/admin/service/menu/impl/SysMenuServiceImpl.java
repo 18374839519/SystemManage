@@ -80,10 +80,12 @@ public class SysMenuServiceImpl implements SysMenuService {
         return sysUserMenuMapper.getMenusByUserId(userId);
     }
 
+    @Override
     public List<SysMenu> selectMenusById(Map<String, Object> map) {
         return sysMenuMapper.selectMenusById(map);
     }
 
+    @Override
     public List<SysMenu> selectCatalogIdName() {
         return sysMenuMapper.selectCatalogIdName();
     }
