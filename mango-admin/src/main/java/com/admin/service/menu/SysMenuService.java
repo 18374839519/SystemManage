@@ -37,21 +37,21 @@ public interface SysMenuService {
      * @param parentId
      * @return
      */
-    int checkMenuName(String name, int parentId);
+    int checkMenuName(String name, String parentId);
 
     /**
      * 删除
      * @param idList
      * @return
      */
-    boolean deleteByPrimaryKey(List<Integer> idList);
+    boolean deleteByPrimaryKey(List<String> idList);
 
     /**
      * 根据父节点查询
-     * @param parentIdList
+     * @param map
      * @return
      */
-    List<Integer> selectByParentId(List<Integer> parentIdList);
+    List<String> selectByParentId(Map<String, Object> map);
 
     /**
      * 根据id修改菜单/目录

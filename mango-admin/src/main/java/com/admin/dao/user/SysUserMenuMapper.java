@@ -3,6 +3,7 @@ package com.admin.dao.user;
 import com.admin.model.user.SysUserMenu;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysUserMenuMapper {
     boolean deleteByPrimaryKey(Integer id);
@@ -16,4 +17,6 @@ public interface SysUserMenuMapper {
     boolean updateByPrimaryKey(SysUserMenu record);
 
     List<SysUserMenu> getMenusByUserId(String userId);
+
+    boolean deleteByMenuId(Map<String, Object> map);
 }

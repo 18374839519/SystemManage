@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface SysMenuMapper {
-    boolean deleteByPrimaryKey(@Param("idList")List<Integer> idList);
+    boolean deleteByPrimaryKey(Map<String, Object> map);
 
     boolean insert(SysMenu record);
 
@@ -30,14 +30,14 @@ public interface SysMenuMapper {
      * @param parentId
      * @return
      */
-    int checkMenuName(String name, int parentId);
+    int checkMenuName(String name, String parentId);
 
     /**
      * 根据父节点查询
-     * @param parentIdList
+     * @param map
      * @return
      */
-    List<Integer> selectByParentId(@Param("parentIdList")List<Integer> parentIdList);
+    List<String> selectByParentId(Map<String, Object> map);
 
     /**
      * 根据id修改菜单/目录

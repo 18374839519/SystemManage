@@ -7,6 +7,8 @@ public class SysRole {
 
     private String roleId;
 
+    private String role;
+
     private String name;
 
     private String remark;
@@ -35,6 +37,14 @@ public class SysRole {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId == null ? null : roleId.trim();
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getName() {

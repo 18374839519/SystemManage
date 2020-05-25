@@ -17,17 +17,17 @@
     <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
-  <delete id="deleteByPrimaryKey">
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Map">
     delete from sys_menu
-    where id in
-    <foreach collection="idList" item="id" index="index" open="(" close=")" separator=",">
+    where menu_id in
+    <foreach collection="menuIdList" item="id" index="index" open="(" close=")" separator=",">
       #{id}
     </foreach>
   </delete>
 
   <!--根据parentId查询id-->
-  <select id="selectByParentId" resultType="java.lang.Integer">
-    select id from sys_menu
+  <select id="selectByParentId" parameterType="java.util.Map" resultType="java.lang.String">
+    select menu_id from sys_menu
     where parent_id in
     <foreach collection="parentIdList" item="parentId" index="index" open="(" close=")" separator=",">
       #{parentId}
@@ -103,7 +103,7 @@
 
   <!--校验菜单名称是否存在-->
   <select id="checkMenuName" parameterType="java.util.Map" resultType="java.lang.Integer">
-  	select count(*) from sys_menu where name = #{name,jdbcType=VARCHAR} and parent_id = #{parentId,jdbcType=BIGINT}
+  	select count(*) from sys_menu where name = #{name,jdbcType=VARCHAR} and parent_id = #{parentId,jdbcType=VARCHAR}
   </select>
 
   <!--根据id查询菜单-->
@@ -114,6 +114,7 @@
     <foreach collection="menuIdListStr" index="index" open="(" item="item" close=")" separator=",">
       #{item}
     </foreach>
+    and del_flag = 0 order by order_num asc
   </select>
 
   <!--查询目录id和名称-->

@@ -6,6 +6,8 @@ import com.admin.model.menu.SysMenu;
 import com.admin.model.user.SysUserMenu;
 import com.admin.security.utils.JwtTokenUtils;
 import com.admin.service.menu.SysMenuService;
+import com.admin.service.user.impl.SysUserMenuServiceImpl;
+import com.admin.utils.datas.GlobalContents;
 import com.admin.utils.uuid.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 
     @Autowired
     private SysUserMenuMapper sysUserMenuMapper;
+
+    @Autowired
+    private SysUserMenuServiceImpl sysUserMenuService;
 
     @Override
     public SysMenu selectByPrimaryKey(int id) {
@@ -49,25 +54,29 @@ public class SysMenuServiceImpl implements SysMenuService {
         SysUserMenu sysUserMenu = new SysUserMenu();
         sysUserMenu.setUserMenuId(UUIDUtils.getUUID());
         sysUserMenu.setMenuId(record.getMenuId());
-        sysUserMenu.setUserId("f291d7529a3346a2aca7c60fb3c4bc50"); // 超级管理员
+        sysUserMenu.setUserId((String) GlobalContents.superAdminMap.get("superAdmin")); // 超级管理员
         sysUserMenu.setCreateTime(new Date());
         sysUserMenu.setCreateBy(record.getCreateBy());
         return sysUserMenuMapper.insert(sysUserMenu);
     }
 
     @Override
-    public int checkMenuName(String name, int parentId) {
+    public int checkMenuName(String name, String parentId) {
         return sysMenuMapper.checkMenuName(name, parentId);
     }
 
     @Override
-    public boolean deleteByPrimaryKey(List<Integer> idList) {
-        return sysMenuMapper.deleteByPrimaryKey(idList);
+    public boolean deleteByPrimaryKey(List<String> idList) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("menuIdList", idList);
+        sysUserMenuService.deleteByMenuId(paramMap);
+        sysMenuMapper.deleteByPrimaryKey(paramMap);
+        return true;
     }
 
     @Override
-    public List<Integer> selectByParentId(List<Integer> parentIdList) {
-        return sysMenuMapper.selectByParentId(parentIdList);
+    public List<String> selectByParentId(Map<String, Object> map) {
+        return sysMenuMapper.selectByParentId(map);
     }
 
     @Override

@@ -45,4 +45,9 @@
     last_update_time
     from sys_user_role
   </select>
+
+  <!--根据roleId查询userId-->
+  <select id="selectUserIdByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select user_id from sys_user_role where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
 </mapper>

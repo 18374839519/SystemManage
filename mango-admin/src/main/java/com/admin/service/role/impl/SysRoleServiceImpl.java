@@ -6,6 +6,8 @@ import com.admin.service.role.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
 
@@ -15,5 +17,10 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     public boolean insertSysRole(SysRole sysRole) {
         return sysRoleMapper.insert(sysRole);
+    }
+
+    @Override
+    public SysRole selectSuperAdminId() {
+        return sysRoleMapper.selectSuperAdminId();
     }
 }

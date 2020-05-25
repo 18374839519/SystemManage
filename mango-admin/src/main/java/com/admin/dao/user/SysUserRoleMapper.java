@@ -3,6 +3,7 @@ package com.admin.dao.user;
 import com.admin.model.user.SysUserRole;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysUserRoleMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +15,6 @@ public interface SysUserRoleMapper {
     List<SysUserRole> selectAll();
 
     int updateByPrimaryKey(SysUserRole record);
+
+    SysUserRole selectUserIdByRoleId(String roleId);
 }

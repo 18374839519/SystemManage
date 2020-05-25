@@ -54,4 +54,12 @@
     select id, user_menu_id, user_id, menu_id, create_by, create_time, update_by, update_time, remark
     from sys_user_menu where user_id = #{userId,jdbcType=VARCHAR}
   </select>
+
+  <delete id="deleteByMenuId" parameterType="java.util.Map" >
+    delete from sys_user_menu
+    where menu_id in
+    <foreach collection="menuIdList" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

@@ -14,4 +14,6 @@ public interface SysRoleMapper {
     List<SysRole> selectAll();
 
     boolean updateByPrimaryKey(SysRole record);
+
+    SysRole selectSuperAdminId();
 }

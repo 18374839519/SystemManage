@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.admin.model.role.SysRole" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
@@ -48,5 +49,10 @@
     select id, role_id, name, remark, create_by, create_time, last_update_by, last_update_time, 
     del_flag
     from sys_role
+  </select>
+
+  <!--查询超级管理员id-->
+  <select id="selectSuperAdminId" resultMap="BaseResultMap" >
+    select role_id from sys_role where role = 'superAdmin'
   </select>
 </mapper>

@@ -83,7 +83,7 @@ public class SysMenuController {
     }
 
     @GetMapping("/checkMenuName")
-    public HttpResult checkMenuName(String name, int parentId) {
+    public HttpResult checkMenuName(String name, String parentId) {
         int result = sysMenuService.checkMenuName(name, parentId);
         if (result > 0) {
             return HttpResultUtils.success(false);
@@ -92,10 +92,18 @@ public class SysMenuController {
     }
 
     @PostMapping("/deleteMenu")
-    public HttpResult deleteMenu(Long id) {
-        List<Integer> list = new ArrayList<>();
-        list.add(id.intValue());
-        List<Integer> parentIdList = selectByParentId(list);
+    public HttpResult deleteMenu(String menuId) {
+        String[] menuIds = menuId.split(",");
+        List<String> list = new ArrayList<>(Arrays.asList(menuIds));
+        // 去重
+        for (int i=0; i<list.size()-1; i++) {
+            for (int j=list.size()-1; j>i; j--) {
+                if (list.get(i).equals(list.get(j))) {
+                    list.remove(j);
+                }
+            }
+        }
+        List<String> parentIdList = selectByParentId(list);
         parentIdList.addAll(list);
         boolean result = sysMenuService.deleteByPrimaryKey(parentIdList);
         if (!result) {
@@ -109,9 +117,11 @@ public class SysMenuController {
      * @param parentIdList
      * @return
      */
-    private List<Integer> selectByParentId(List<Integer> parentIdList) {
-        List<Integer> returnList = new ArrayList<>();
-        List<Integer> list = sysMenuService.selectByParentId(parentIdList);
+    private List<String> selectByParentId(List<String> parentIdList) {
+        List<String> returnList = new ArrayList<>();
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("parentIdList", parentIdList);
+        List<String> list = sysMenuService.selectByParentId(paramMap);
         if (list.size() > 0) {
             returnList.addAll(list);
             selectByParentId(list);
