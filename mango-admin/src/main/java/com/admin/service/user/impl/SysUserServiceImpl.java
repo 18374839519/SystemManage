@@ -38,16 +38,17 @@ public class SysUserServiceImpl implements SysUserService {
         // 添加用户
         sysUser.setUserId(UUIDUtils.getUUID());
         sysUser.setSalt(PasswordUtils.getSalt());  // 获取盐
+        if (sysUser.getPassword() == null) {
+            sysUser.setPassword("123456");
+        }
         sysUser.setPassword(PasswordUtils.encode(sysUser.getPassword(), sysUser.getSalt()));  // 密码加密
         sysUser.setCreateTime(new Date());
         sysUser.setStatus(1);
         sysUser.setDelFlag(0);
         if (sysUser.getNickName() == null || "".equals(sysUser.getNickName())) {
-            sysUser.setNickName("游客" + TimeUtils.getTimeMillis());
+            sysUser.setNickName(sysUser.getName());
         }
         return sysUserMapper.addUser(sysUser);
-        // 添加用户所属机构
-        // 添加用户角色
     }
 
     @Override
@@ -58,6 +59,11 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public int checkNickName(String nickName) {
         return sysUserMapper.checkNickName(nickName);
+    }
+
+    @Override
+    public List<SysUser> selectAllUserByPage(SysUser sysUser) {
+        return sysUserMapper.selectAllUserByPage(sysUser);
     }
 
 }

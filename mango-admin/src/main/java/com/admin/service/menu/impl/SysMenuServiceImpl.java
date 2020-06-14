@@ -70,8 +70,7 @@ public class SysMenuServiceImpl implements SysMenuService {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("menuIdList", idList);
         sysUserMenuService.deleteByMenuId(paramMap);
-        sysMenuMapper.deleteByPrimaryKey(paramMap);
-        return true;
+        return sysMenuMapper.deleteByPrimaryKey(paramMap);
     }
 
     @Override

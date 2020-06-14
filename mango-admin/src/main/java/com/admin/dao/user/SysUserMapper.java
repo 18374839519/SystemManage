@@ -37,4 +37,6 @@ public interface SysUserMapper {
      * @return
      */
     int checkNickName(String nickName);
+
+    List<SysUser> selectAllUserByPage(SysUser sysUser);
 }

@@ -1,5 +1,7 @@
 package com.admin.model.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class SysUser {
@@ -27,10 +29,16 @@ public class SysUser {
 
     private String createBy;
 
+    private String userNumberId;
+
+    private Integer sex;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
 
     private String lastUpdateBy;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date lastUpdateTime;
 
     private Integer delFlag;
@@ -161,5 +169,21 @@ public class SysUser {
 
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    public String getUserNumberId() {
+        return userNumberId;
+    }
+
+    public void setUserNumberId(String userNumberId) {
+        this.userNumberId = userNumberId;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }

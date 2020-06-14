@@ -39,7 +39,7 @@ public class SysUserController {
     @GetMapping("/selectAllUserByPage")
     public HttpResult selectAll(PageRequest pageRequest, SysUser sysUser) {
         PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
-        List<SysUser> userList = sysUserServiceImpl.selectAllByPage(sysUser);
+        List<SysUser> userList = sysUserServiceImpl.selectAllUserByPage(sysUser);
         PageInfo<SysUser> pageInfo = new PageInfo(userList);
         return HttpResultUtils.success(pageInfo);
     }

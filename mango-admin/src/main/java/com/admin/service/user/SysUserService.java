@@ -41,4 +41,6 @@ public interface SysUserService {
      */
     int checkNickName(String nickName);
 
+    List<SysUser> selectAllUserByPage(SysUser sysUser);
+
 }

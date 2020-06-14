@@ -9,12 +9,14 @@ import com.admin.utils.http.HttpResultUtils;
 import com.admin.utils.http.HttpStatus;
 import com.admin.utils.uuid.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/dept")
@@ -34,5 +36,11 @@ public class SysDeptController {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "部门添加失败");
         }
         return HttpResultUtils.success();
+    }
+
+    @GetMapping("/getAllDept")
+    public HttpResult getAllDept() {
+        List<SysDept> list = sysDeptService.selectAll();
+        return HttpResultUtils.success(list);
     }
 }

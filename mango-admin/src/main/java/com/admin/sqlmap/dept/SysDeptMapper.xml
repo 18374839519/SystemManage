@@ -49,6 +49,6 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, dept_id, name, parent_id, order_num, create_by, create_time, last_update_by, 
     last_update_time, del_flag
-    from sys_dept
+    from sys_dept order by order_num asc
   </select>
 </mapper>

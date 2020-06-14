@@ -6,6 +6,8 @@ import com.admin.service.dept.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysDeptServiceImpl implements SysDeptService {
 
@@ -15,5 +17,10 @@ public class SysDeptServiceImpl implements SysDeptService {
     @Override
     public boolean insertDept(SysDept sysDept) {
         return sysDeptMapper.insert(sysDept);
+    }
+
+    @Override
+    public List<SysDept> selectAll() {
+        return sysDeptMapper.selectAll();
     }
 }
