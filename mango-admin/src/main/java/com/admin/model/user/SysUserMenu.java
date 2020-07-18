@@ -7,9 +7,9 @@ public class SysUserMenu {
 
     private String userMenuId;
 
-    private String userId;
+    private String userName;
 
-    private String menuId;
+    private String menuCode;
 
     private String createBy;
 
@@ -35,22 +35,6 @@ public class SysUserMenu {
 
     public void setUserMenuId(String userMenuId) {
         this.userMenuId = userMenuId == null ? null : userMenuId.trim();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-
-    public String getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(String menuId) {
-        this.menuId = menuId == null ? null : menuId.trim();
     }
 
     public String getCreateBy() {
@@ -91,5 +75,21 @@ public class SysUserMenu {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
     }
 }

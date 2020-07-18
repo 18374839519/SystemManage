@@ -40,19 +40,20 @@ public class SysMenuController {
         return HttpResultUtils.success(pageInfo);
     }
 
-    @GetMapping("/getMenusByUserId")
-    public HttpResult getMenusByUserId(String userId) {
-        List<SysUserMenu> menuList = sysMenuService.getMenusByUserId(userId);
+    @GetMapping("/getMenusByuserName")
+    public HttpResult getMenusByuserName(String userName, String menuSys) {
+        List<SysUserMenu> menuList = sysMenuService.getMenusByuserName(userName);
         if (menuList.size() == 0) {
             return HttpResultUtils.success();
         }
-        List<String> menuIdListStr = new ArrayList<>();
+        List<String> menuCodeListStr = new ArrayList<>();
         for (SysUserMenu sysUserMenu : menuList) {
-            menuIdListStr.add(sysUserMenu.getMenuId());
+            menuCodeListStr.add(sysUserMenu.getMenuCode());
         }
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("menuIdListStr", menuIdListStr);
-        List<SysMenu> menuLists = sysMenuService.selectMenusById(paramMap);
+        paramMap.put("menuCodeListStr", menuCodeListStr);
+        paramMap.put("menuSys", menuSys);
+        List<SysMenu> menuLists = sysMenuService.selectMenusByMenuCode(paramMap);
         List<MenuData> menuDataList = new ArrayList<>();
         for (int i=0; i<menuLists.size(); i++) {
             MenuData menuData = new MenuData();
@@ -129,11 +130,11 @@ public class SysMenuController {
         return returnList;
     }
 
-    @PostMapping("/updateById")
-    public HttpResult updateById(HttpServletRequest request, SysMenu sysMenu) {
+    @PostMapping("/updateByCode")
+    public HttpResult updateByCode(HttpServletRequest request, SysMenu sysMenu) {
         sysMenu.setLastUpdateBy(JwtTokenUtils.getUsernameFromToken(JwtTokenUtils.getToken(request)));
         sysMenu.setLastUpdateTime(new Date());
-        boolean result = sysMenuService.updateById(sysMenu);
+        boolean result = sysMenuService.updateByCode(sysMenu);
         if (!result) {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "更新失败");
         }

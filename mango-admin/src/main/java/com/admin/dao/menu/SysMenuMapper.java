@@ -44,9 +44,11 @@ public interface SysMenuMapper {
      * @param record
      * @return
      */
-    boolean updateById(SysMenu record);
+    boolean updateByCode(SysMenu record);
 
-    List<SysMenu> selectMenusById(Map<String, Object> map);
+    List<SysMenu> selectMenusByMenuCode(Map<String, Object> map);
 
     List<SysMenu> selectCatalogIdName();
+
+    String selectSystemIntroduce();
 }

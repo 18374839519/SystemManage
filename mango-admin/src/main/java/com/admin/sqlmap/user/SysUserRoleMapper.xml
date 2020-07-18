@@ -3,9 +3,9 @@
 <mapper namespace="com.admin.dao.user.SysUserRoleMapper" >
   <resultMap id="BaseResultMap" type="com.admin.model.user.SysUserRole" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_role_id" property="userRoleId" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="VARCHAR" />
-    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="user_role" property="userrole" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_update_by" property="lastUpdateBy" jdbcType="VARCHAR" />
@@ -16,18 +16,18 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.admin.model.user.SysUserRole" >
-    insert into sys_user_role (id, user_role_id, user_id, 
-      role_id, create_by, create_time, 
+    insert into sys_user_role (id, user_role, user_name, 
+      role, create_by, create_time, 
       last_update_by, last_update_time)
-    values (#{id,jdbcType=INTEGER}, #{userRoleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{roleId,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{userrole,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.admin.model.user.SysUserRole" >
     update sys_user_role
-    set user_role_id = #{userRoleId,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=VARCHAR},
+    set user_role = #{userrole,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
@@ -35,19 +35,19 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, user_role_id, user_id, role_id, create_by, create_time, last_update_by, 
+    select id, user_role, user_name, role, create_by, create_time, last_update_by, 
     last_update_time
     from sys_user_role
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, user_role_id, user_id, role_id, create_by, create_time, last_update_by, 
+    select id, user_role, user_name, role, create_by, create_time, last_update_by, 
     last_update_time
     from sys_user_role
   </select>
 
-  <!--根据roleId查询userId-->
-  <select id="selectUserIdByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap" >
-    select user_id from sys_user_role where role_id = #{roleId,jdbcType=VARCHAR}
+  <!--根据role查询userName-->
+  <select id="selectuserNameByrole" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select user_name from sys_user_role where role = #{role,jdbcType=VARCHAR}
   </select>
 </mapper>

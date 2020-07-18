@@ -16,7 +16,7 @@ public interface SysUserMenuMapper {
 
     boolean updateByPrimaryKey(SysUserMenu record);
 
-    List<SysUserMenu> getMenusByUserId(String userId);
+    List<SysUserMenu> getMenusByuserName(String userName);
 
     boolean deleteByMenuId(Map<String, Object> map);
 }

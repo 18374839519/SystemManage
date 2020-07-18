@@ -25,13 +25,17 @@ public class SysUser {
 
     private Integer status;
 
-    private Integer deptId;
+    private String deptId;
 
     private String createBy;
 
     private String userNumberId;
 
     private Integer sex;
+
+    private Integer isAllow;
+
+    private Integer isAllowWork;
 
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date createTime;
@@ -123,11 +127,11 @@ public class SysUser {
         this.status = status;
     }
 
-    public Integer getDeptId() {
+    public String getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Integer deptId) {
+    public void setDeptId(String deptId) {
         this.deptId = deptId;
     }
 
@@ -185,5 +189,21 @@ public class SysUser {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Integer getIsAllow() {
+        return isAllow;
+    }
+
+    public void setIsAllow(Integer isAllow) {
+        this.isAllow = isAllow;
+    }
+
+    public Integer getIsAllowWork() {
+        return isAllowWork;
+    }
+
+    public void setIsAllowWork(Integer isAllowWork) {
+        this.isAllowWork = isAllowWork;
     }
 }

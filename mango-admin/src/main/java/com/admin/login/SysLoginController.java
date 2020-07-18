@@ -77,6 +77,16 @@ public class SysLoginController {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "账号或密码错误");
         }
 
+        // 没有登录后管系统的权限
+        if (sysUser.getIsAllow() == -1) {
+            throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "该用户不存在");
+        }
+
+        // 没有登录办公系统的权限
+        if (sysUser.getIsAllowWork() == -1) {
+            throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "该用户不存在");
+        }
+
         // 账号锁定
         if (sysUser.getStatus() == 0) {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "账号被锁定");

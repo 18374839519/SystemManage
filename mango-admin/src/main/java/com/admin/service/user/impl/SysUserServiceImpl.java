@@ -1,10 +1,11 @@
 package com.admin.service.user.impl;
 
 import com.admin.dao.user.SysUserMapper;
+import com.admin.dao.user.SysUserMenuMapper;
 import com.admin.model.user.SysUser;
+import com.admin.model.user.SysUserMenu;
 import com.admin.security.utils.PasswordUtils;
 import com.admin.service.user.SysUserService;
-import com.admin.utils.time.TimeUtils;
 import com.admin.utils.uuid.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private SysUserMenuMapper sysUserMenuMapper;
 
     @Override
     public List<SysUser> selectAllByPage(SysUser sysUser) {
@@ -37,6 +41,17 @@ public class SysUserServiceImpl implements SysUserService {
     public int insertUser(SysUser sysUser) {
         // 添加用户
         sysUser.setUserId(UUIDUtils.getUUID());
+        // 默认赋予系统介绍页面权限
+        if (!"admin".equals(sysUser.getName())) {
+            SysUserMenu sysUserMenu = new SysUserMenu();
+            sysUserMenu.setUserMenuId(UUIDUtils.getUUID());
+            sysUserMenu.setMenuCode("SMM0001");
+            sysUserMenu.setUserName(sysUser.getName());
+            sysUserMenu.setCreateTime(new Date());
+            sysUserMenu.setCreateBy(sysUser.getCreateBy());
+            sysUserMenuMapper.insert(sysUserMenu);
+        }
+
         sysUser.setSalt(PasswordUtils.getSalt());  // 获取盐
         if (sysUser.getPassword() == null) {
             sysUser.setPassword("123456");

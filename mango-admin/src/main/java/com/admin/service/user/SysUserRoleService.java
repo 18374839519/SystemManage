@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface SysUserRoleService {
 
-    SysUserRole selectUserIdByRoleId(String roleId);
+    SysUserRole selectuserNameByrole(String roleId);
 
 }

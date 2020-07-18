@@ -53,8 +53,8 @@ public class SysMenuServiceImpl implements SysMenuService {
         sysMenuMapper.insert(record);
         SysUserMenu sysUserMenu = new SysUserMenu();
         sysUserMenu.setUserMenuId(UUIDUtils.getUUID());
-        sysUserMenu.setMenuId(record.getMenuId());
-        sysUserMenu.setUserId((String) GlobalContents.superAdminMap.get("superAdmin")); // 超级管理员
+        sysUserMenu.setMenuCode(record.getMenuCode());
+        sysUserMenu.setUserName((String) GlobalContents.superAdminMap.get("superAdmin")); // 超级管理员
         sysUserMenu.setCreateTime(new Date());
         sysUserMenu.setCreateBy(record.getCreateBy());
         return sysUserMenuMapper.insert(sysUserMenu);
@@ -79,22 +79,27 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public boolean updateById(SysMenu record) {
-        return sysMenuMapper.updateById(record);
+    public boolean updateByCode(SysMenu record) {
+        return sysMenuMapper.updateByCode(record);
     }
 
     @Override
-    public List<SysUserMenu> getMenusByUserId(String userId) {
-        return sysUserMenuMapper.getMenusByUserId(userId);
+    public List<SysUserMenu> getMenusByuserName(String userName) {
+        return sysUserMenuMapper.getMenusByuserName(userName);
     }
 
     @Override
-    public List<SysMenu> selectMenusById(Map<String, Object> map) {
-        return sysMenuMapper.selectMenusById(map);
+    public List<SysMenu> selectMenusByMenuCode(Map<String, Object> map) {
+        return sysMenuMapper.selectMenusByMenuCode(map);
     }
 
     @Override
     public List<SysMenu> selectCatalogIdName() {
         return sysMenuMapper.selectCatalogIdName();
+    }
+
+    @Override
+    public String selectSystemIntroduce() {
+        return sysMenuMapper.selectSystemIntroduce();
     }
 }

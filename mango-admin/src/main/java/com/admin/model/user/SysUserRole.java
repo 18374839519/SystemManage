@@ -7,9 +7,9 @@ public class SysUserRole {
 
     private String userRoleId;
 
-    private String userId;
+    private String userName;
 
-    private String roleId;
+    private String role;
 
     private String createBy;
 
@@ -33,22 +33,6 @@ public class SysUserRole {
 
     public void setUserRoleId(String userRoleId) {
         this.userRoleId = userRoleId == null ? null : userRoleId.trim();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId == null ? null : roleId.trim();
     }
 
     public String getCreateBy() {
@@ -81,5 +65,21 @@ public class SysUserRole {
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

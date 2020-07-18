@@ -16,6 +16,9 @@
     <result column="last_update_by" property="lastUpdateBy" jdbcType="VARCHAR" />
     <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+    <result column="menu_belong" property="menuBelong" jdbcType="VARCHAR" />
+    <result column="menu_sys" property="menuSys" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.util.Map">
     delete from sys_menu
@@ -35,16 +38,17 @@
   </select>
 
   <insert id="insert" parameterType="com.admin.model.menu.SysMenu" >
-    insert into sys_menu (id, menu_id, name, 
+    insert into sys_menu (id, menu_id, name, menu_code,
       parent_id, url, perms, 
       type, icon, order_num, 
       create_by, create_time, last_update_by, 
-      last_update_time, del_flag)
-    values (#{id,jdbcType=INTEGER}, #{menuId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      last_update_time, del_flag, menu_belong, menu_sys)
+    values (#{id,jdbcType=INTEGER}, #{menuId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{menuCode,jdbcType=INTEGER},
       #{parentId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{orderNum,jdbcType=INTEGER}, 
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
-      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER})
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER},
+      #{menuBelong,jdbcType=INTEGER}, #{menuSys,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.admin.model.menu.SysMenu" >
     update sys_menu
@@ -60,11 +64,14 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=INTEGER}
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      menu_code = #{menuCode,jdbcType=INTEGER},
+      menu_belong = #{menuBelong,jdbcType=INTEGER},
+      menu_sys = #{menuSys,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateById" parameterType="com.admin.model.menu.SysMenu" >
+  <update id="updateByCode" parameterType="com.admin.model.menu.SysMenu" >
     update sys_menu
     set name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=VARCHAR},
@@ -75,30 +82,38 @@
       order_num = #{orderNum,jdbcType=INTEGER},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=INTEGER}
-    where menu_id = #{menuId,jdbcType=VARCHAR}
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      menu_belong = #{menuBelong,jdbcType=INTEGER},
+      menu_sys = #{menuSys,jdbcType=VARCHAR}
+    where menu_code = #{menuCode,jdbcType=INTEGER}
   </update>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by, 
-    create_time, last_update_by, last_update_time, del_flag
+    create_time, last_update_by, last_update_time, del_flag, menu_code, menu_belong, menu_sys
     from sys_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap" >
     select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by, 
-    create_time, last_update_by, last_update_time, del_flag
+    create_time, last_update_by, last_update_time, del_flag, menu_code, menu_belong, menu_sys
     from sys_menu where 1=1
     <if test="name != null">
       and name like CONCAT('%', #{name, jdbcType=VARCHAR}, '%')
+    </if>
+    <if test="menuCode != null">
+      and menu_code like CONCAT('%', #{menuCode, jdbcType=VARCHAR}, '%')
+    </if>
+    <if test="menuSys != null">
+      and menu_sys = #{menuSys,jdbcType=VARCHAR}
     </if>
     order by create_time desc
   </select>
 
   <select id="selectPermissionsByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	select m.* from sys_menu m, sys_user u, sys_user_role ur, sys_role_menu rm
-  	where u.name = #{userName,jdbcType=BIGINT} and u.id = ur.user_id
-  	and ur.role_id = rm.role_id and rm.menu_id = m.id
+  	select distinct m.* from sys_menu m, sys_user u, sys_user_role ur, sys_user_menu um
+  	where u.name = #{userName,jdbcType=BIGINT} and u.name = ur.user_name
+  	and ur.user_name = um.user_name
   </select>
 
   <!--校验菜单名称是否存在-->
@@ -107,18 +122,25 @@
   </select>
 
   <!--根据id查询菜单-->
-  <select id="selectMenusById" parameterType="java.util.Map" resultMap="BaseResultMap">
+  <select id="selectMenusByMenuCode" parameterType="java.util.Map" resultMap="BaseResultMap">
   	select id, menu_id, name, parent_id, url, perms, type, icon, order_num, create_by,
-    create_time, last_update_by, last_update_time, del_flag
-    from sys_menu where menu_id in
-    <foreach collection="menuIdListStr" index="index" open="(" item="item" close=")" separator=",">
+    create_time, last_update_by, last_update_time, del_flag, menu_code, menu_belong, menu_sys
+    from sys_menu where menu_code in
+    <foreach collection="menuCodeListStr" index="index" open="(" item="item" close=")" separator=",">
       #{item}
     </foreach>
-    and del_flag = 0 order by order_num asc
+    and del_flag = 0
+    and menu_sys = #{menuSys,jdbcType=VARCHAR}
+    order by order_num asc
   </select>
 
-  <!--查询目录id和名称-->
+  <!--查询目录编码和名称-->
   <select id="selectCatalogIdName" resultMap="BaseResultMap">
-    select menu_id, name from sys_menu where type = 0;
+    select menu_code, name from sys_menu where type = 0;
+  </select>
+
+  <!--查询系统介绍页面id-->
+  <select id="selectSystemIntroduce" resultType="java.lang.String">
+    select menu_id from sys_menu where type = 1 and parent_id = '0' and name = '系统介绍';
   </select>
 </mapper>

@@ -16,5 +16,5 @@ public interface SysUserRoleMapper {
 
     int updateByPrimaryKey(SysUserRole record);
 
-    SysUserRole selectUserIdByRoleId(String roleId);
+    SysUserRole selectuserNameByrole(String roleId);
 }

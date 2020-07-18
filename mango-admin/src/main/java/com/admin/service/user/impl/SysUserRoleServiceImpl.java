@@ -14,7 +14,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 
 
     @Override
-    public SysUserRole selectUserIdByRoleId(String roleId) {
-        return sysUserRoleMapper.selectUserIdByRoleId(roleId);
+    public SysUserRole selectuserNameByrole(String role) {
+        return sysUserRoleMapper.selectuserNameByrole(role);
     }
 }

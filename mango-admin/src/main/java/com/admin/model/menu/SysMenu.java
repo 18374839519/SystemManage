@@ -35,6 +35,12 @@ public class SysMenu {
 
     private Integer delFlag;
 
+    private String menuCode;
+
+    private String menuBelong;
+
+    private String menuSys;
+
     public Integer getId() {
         return id;
     }
@@ -145,5 +151,29 @@ public class SysMenu {
 
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
+    }
+
+    public String getMenuBelong() {
+        return menuBelong;
+    }
+
+    public void setMenuBelong(String menuBelong) {
+        this.menuBelong = menuBelong;
+    }
+
+    public String getMenuSys() {
+        return menuSys;
+    }
+
+    public void setMenuSys(String menuSys) {
+        this.menuSys = menuSys;
     }
 }

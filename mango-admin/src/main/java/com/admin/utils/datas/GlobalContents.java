@@ -10,4 +10,7 @@ public class GlobalContents {
 
     //超级管理员
     public final static Map<String, Object> superAdminMap = new HashMap<>();
+
+    // 系统介绍页面id
+    public final static Map<String, Object> systemIntroduceMenuId = new HashMap<>();
 }

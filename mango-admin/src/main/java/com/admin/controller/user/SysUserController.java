@@ -1,5 +1,6 @@
 package com.admin.controller.user;
 
+import com.admin.security.utils.JwtTokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.admin.model.user.SysUser;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.ArrayList;
@@ -132,22 +134,33 @@ public class SysUserController {
      * @return
      */
     @PostMapping("/addUser")
-    public HttpResult addUser(SysUser sysUser) {
-        // 检查用户名是否存在
-        int checkUserName = sysUserServiceImpl.checkUserName(sysUser.getName());
-        if (checkUserName > 0) {
-            throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "用户名已存在");
-        }
-        // 检查昵称是否存在
-        int checkNickName = sysUserServiceImpl.checkNickName(sysUser.getNickName());
-        if (checkNickName > 0) {
-            throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "昵称已存在");
-        }
+    public HttpResult addUser(HttpServletRequest request, SysUser sysUser) {
         // 添加用户
+        sysUser.setCreateBy(JwtTokenUtils.getUsernameFromToken(JwtTokenUtils.getToken(request)));
         int result = sysUserServiceImpl.insertUser(sysUser);
         if (result < 1) {
             throw new BaseException(HttpStatus.ERROR_SERVICE_VALIDATOR, "用户添加失败");
         }
         return HttpResultUtils.success();
+    }
+
+    @GetMapping("/checkUserName")
+    public HttpResult checkUserName(SysUser sysUser) {
+        // 检查用户名是否存在
+        int checkUserName = sysUserServiceImpl.checkUserName(sysUser.getName());
+        if (checkUserName > 0) {
+            return HttpResultUtils.success(false);
+        }
+        return HttpResultUtils.success(true);
+    }
+
+    @GetMapping("/checkUserNickName")
+    public HttpResult checkUserNickName(SysUser sysUser) {
+        // 检查昵称是否存在
+        int checkNickName = sysUserServiceImpl.checkNickName(sysUser.getNickName());
+        if (checkNickName > 0) {
+            return HttpResultUtils.success(false);
+        }
+        return HttpResultUtils.success(true);
     }
 }
